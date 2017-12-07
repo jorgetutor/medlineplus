@@ -1,0 +1,72 @@
+{
+  "name": "MedlinePlus Web Service",
+  "apiVersion": "1.0",
+  "description": "Returns MedlinePlus health topic search results in English or Spanish for an input query string.",
+  "baseUri": "https://wsearch.nlm.nih.gov/ws/",
+  "operations": {
+    "Query": {
+      "httpMethod": "GET",
+      "uri": "query",
+      "responseModel": "getResponse",
+      "summary": "Returns MedlinePlus health topic search results in English or Spanish for an input query string.",
+      "parameters": {
+        "db": {
+          "required": true,
+          "location": "query",
+          "type": "string",
+          "default": "healthTopics",
+          "description": "Database to search. Value must be a valid MedlinePlus Web service database name. Possible values are: healthTopics - English health topics. Submit English-language queries when using this parameter. healthTopicsSpanish - Spanish health topics. Submit Spanish-language queries when using this parameter."
+        },
+        "term": {
+          "required": true,
+          "location": "query",
+          "type": "string",
+          "description": "Text query submitted to the Web service. All special characters must be URL encoded. Spaces may be replaced by '+' signs, which represent the AND operator. Represent the OR operator as +OR+. To send a query as a phrase, enclose the phrase in quotes using %22 to represent quotation marks."
+        },
+        "file": {
+          "location": "query",
+          "type": "string",
+          "description": "Name of the file containing the document references for the current search. This parameter is required when retstart is being used. The value is obtained from the XML returned from the initial search. The file will expire after a certain period of inactivity, after which a new request must be initiated. If the file is expired, the XML output will contain an error message."
+        },
+        "server": {
+          "location": "query",
+          "type": "string",
+          "description": "Name of the server with the file referenced by the file parameter. This is required when the file parameter is being used."
+        },
+        "retstart": {
+          "location": "query",
+          "type": "integer",
+          "description": "Sequential index of the first document in the retrieved set to be shown in the XML output (default=0, corresponding to the first record of the entire set). This parameter can be used in conjunction with retmax to download an arbitrary subset of documents retrieved from a search."
+        },
+        "retmax": {
+          "location": "query",
+          "type": "integer",
+          "description": "Total number of documents from the retrieved set to be shown in the XML output (default=10). By default, the web service only includes the first 10 documents retrieved in the XML output. Increasing retmax allows more of the retrieved documents to be included in the XML output."
+        },
+        "rettype": {
+          "location": "query",
+          "type": "string",
+          "description": "Retrieval type. This parameter specifies the format of the results. By default, results will be returned in brief format if no rettype is specified in the request. To specify a retrieval type, use one of the following possible values: brief - Returns the health topics as search results with abbreviated health topic records, keyword-in-context highlighting, and snippets (default). topic - Returns the health topics as full XML records with all associated vocabulary and links. all - Returns health topics in both brief and topic format."
+        },
+        "tool": {
+          "location": "query",
+          "type": "string",
+          "description": "A string with no internal spaces that identifies the resource which is using the Web service (e.g., tool=myservicename). This argument is used to help NLM provide better service to third parties using the Web service from programs. As with any query system, it is sometimes possible to ask the same question different ways, with different effects on performance. NLM requests that developers sending a large volume of requests include a constant 'tool' argument for all requests using the Web service."
+        },
+        "email": {
+          "location": "query",
+          "type": "string",
+          "description": "Email address. If you choose to provide an email address, NLM may use it to contact you if there are problems with your queries. In addition to using the email address parameter, we encourage all Web service users to sign up for the email list referenced at the top of this page to receive general announcements and notifications of changes to the service."
+        }
+      }
+    }
+  },
+  "models": {
+    "getResponse": {
+      "type": "object",
+      "additionalProperties": {
+        "location": "xml"
+      }
+    }
+  }
+}

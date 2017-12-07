@@ -1,0 +1,25 @@
+{
+    "name": "tutor/medlineplus",
+    "description": "MedlinePlus Web Service Guzzle Client",
+    "keywords": ["medlineplus", "tutor", "api", "guzzle"],
+    "homepage": "http://github.com/jorgetutor/medlineplus",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+         "php": "^5.6 || ^7.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle-services": "^1.1",
+        "gimler/guzzle-description-loader": "^0.0.4"
+    },
+    "authors": [
+        {
+            "name": "jorgetutor",
+            "homepage": "https://jorgetutor.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tutor\\MedlinePlus\\": "src/"
+        }
+    }
+}
